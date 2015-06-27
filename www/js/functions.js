@@ -128,6 +128,15 @@ function translateMainPage()
       }
    );
 }
+function translateMainPageTo(lang)
+{
+         var translation = Translation[lang.value.substring(0, 2)];
+         if (typeof translation === 'undefined')
+            return;
+         for(var key in translation)
+            $('#' + key).auderoTextChanger(translation[key]);
+}
+
 
 /**
  * Open all the links as internals
