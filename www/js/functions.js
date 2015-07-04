@@ -112,29 +112,22 @@ function initApplication()
  */
 function translateMainPage()
 {
-   navigator.globalization.getLocaleName(
-      function(locale)
-      {
-         var translation = Translation[locale.value.substring(0, 2)];
+   console.log('translation')
+      console.log(Settings.getSettings().lastLanguage)
+         var translation = Translation[Settings.getSettings().lastLanguage.substring(0, 2)];
          if (typeof translation === 'undefined')
             return;
-
          for(var key in translation)
             $('#' + key).auderoTextChanger(translation[key]);
-      },
-      function()
-      {
-         console.log('An error has occurred with the translation');
-      }
-   );
 }
 function translateMainPageTo(lang)
 {
-         var translation = Translation[lang.value.substring(0, 2)];
+         var translation = Translation[lang.substring(0, 2)];
          if (typeof translation === 'undefined')
             return;
          for(var key in translation)
             $('#' + key).auderoTextChanger(translation[key]);
+         Settings.saveSetting("lastLanguage", lang.substring(0, 2));
 }
 
 

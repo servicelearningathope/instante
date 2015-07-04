@@ -17,14 +17,16 @@
       <script src="js/functions.js"></script>
       <script>
          $(document).on('pagebeforecreate orientationchange', updateIcons);
-         $(document).one('deviceready', initApplication);
+         $(document).on('deviceready', initApplication);
+         $(document).on('ready', initApplication);
       </script>
    </head>
    <body>
       <div id="home-page" data-role="page">
          <header data-role="header">
             <h1>Instante</h1>
-            <a href="#" id="lang-es-button" data-icon="refresh" onclick="translateMainPageTo('es')" data-iconpos="notext" class="ui-btn-right">Espanol</a>
+            <a href="#" id="lang-es-button" data-icon="refresh" onclick="translateMainPageTo('en')" data-iconpos="notext" class="ui-btn-inline">en</a>
+            <a href="#" id="lang-es-button" data-icon="refresh" onclick="translateMainPageTo('es')" data-iconpos="notext" class="ui-btn-inline">es</a>
          </header>
          <div data-role="content">
             <p id="app-description">

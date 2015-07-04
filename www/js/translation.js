@@ -1,4 +1,18 @@
 var Translation = {
+   'en': {
+      'app-description': 'Currency Converter is a simple app that helps you convert from a currency to another. You can update the exchange rates every time you want so you\'ll have always an up-to-date conversion.',
+      'convert-title': 'Convert',
+      'from-value-label': 'Currency:',
+      'from-type-label': 'From Currency:',
+      'to-type-label': 'To Currency:',
+      'result-title': 'Result',
+      'copyright-title': 'created by Aurelio De Rosa',
+      'credits-button': 'Credits',
+      'update-button': 'Update Data',
+      'submit-button': 'Convert',
+      'reset-button': 'Reset data',
+      'last-update-label': 'Last update:'
+   },
    'it': {
       'app-description': 'Currency Converter è una semplice applicazione che ti aiuta a convertire da una valuta ad un\'altra. È anche possibile aggiornare i tassi di cambio ogni volta che si desidera così da avere sempre dei tassi di conversione aggiornati.',
       'convert-title': 'Converti',
