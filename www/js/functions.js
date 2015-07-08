@@ -10,10 +10,8 @@ function checkRequirements()
       );
       return false;
    }
-
    return true;
 }
-
 function updateIcons()
 {
    if ($(window).width() > 480)
@@ -29,37 +27,27 @@ function updateIcons()
       });
    }
 }
-
 /**
  * Initialize the application
  */
 function initApplication()
 {
-   translateMainPage();
+   loadContentInLanguage("index", "en"); //should replace EN with saved setting
    openLinksInApp();
    if (checkRequirements() === false)
    {
       $('#submit-button').button('disable');
       return;
    }
-
-   $.mobile.loading('show');
-
-   fillCurrenciesSelection();
-   updateExchangeRates();
-   updateLastUpdate();
-
    $(document).on('online', updateExchangeRates);
    $('#submit-button').click(function(event) {
       event.preventDefault();
-
       // Convert the value
       var result = Currency.convert(
          $('#from-value').val(),
          $('#from-type').val(),
          $('#to-type').val()
       );
-
       // Localize the result
       navigator.globalization.numberToString(
          result,
@@ -72,7 +60,6 @@ function initApplication()
             $('#result').text(result);
          }
       );
-
       // Update settings
       var settings = Settings.getSettings();
       if ($.isEmptyObject(settings))
@@ -83,14 +70,12 @@ function initApplication()
    });
    $('#reset-button').click(function(event) {
       event.preventDefault();
-
       $('#from-value').val(0);
       $('#form-converter select').prop('selectedIndex', 0).selectmenu('refresh');
       $('#result').text(0);
    });
    $('#update-button').click(function(event) {
       event.preventDefault();
-
       if (navigator.network.connection.type === Connection.NONE)
       {
          console.log('The connection is off. Can\'t update exchange rates.');
@@ -103,34 +88,30 @@ function initApplication()
       else
          updateExchangeRates();
    });
-
-   $.mobile.loading('hide');
 }
 
+function updateContent() {
+   $.mobile.loading('show');
+   fillCurrenciesSelection();
+   updateExchangeRates();
+   updateLastUpdate();
+   $.mobile.loading('hide');
+}
 /**
  * Translate the main page
  */
-function translateMainPage()
-{
-   console.log('translation')
-      console.log(Settings.getSettings().lastLanguage)
-         var translation = Translation[Settings.getSettings().lastLanguage.substring(0, 2)];
-         if (typeof translation === 'undefined')
-            return;
-         for(var key in translation)
-            $('#' + key).auderoTextChanger(translation[key]);
+function loadContentInLanguage(slug, lang) {
+   $.get("content/" + slug + ".html", function (template) {
+      $.get("lang/" + lang + "/" + slug + ".txt", function(data) {
+         template = $(template);
+         translations = YAML.parse(data);
+         $.foreach(translations, function (key, value) {
+            template.find("#" + key).innerHTML(value);
+         });
+         $("#content").innerHTML(template);
+      });
+   });
 }
-function translateMainPageTo(lang)
-{
-         var translation = Translation[lang.substring(0, 2)];
-         if (typeof translation === 'undefined')
-            return;
-         for(var key in translation)
-            $('#' + key).auderoTextChanger(translation[key]);
-         Settings.saveSetting("lastLanguage", lang.substring(0, 2));
-}
-
-
 /**
  * Open all the links as internals
  */
@@ -141,46 +122,6 @@ function openLinksInApp()
       window.open($(this).attr('href'), '_target');
    });
 }
-
-/**
- * Use the stored currencies to update the selection lists
- */
-function fillCurrenciesSelection()
-{
-   var currencies = Currency.getCurrencies();
-   var $fromCurrencyType = $('#from-type');
-   var $toCurrencyType = $('#to-type');
-
-   // Empty elements
-   $fromCurrencyType.empty();
-   $toCurrencyType.empty();
-
-   // Load all the stored currencies
-   for(var i = 0; i < currencies.length; i++)
-   {
-      $fromCurrencyType.append('<option value="' + currencies[i].abbreviation + '">' +
-         currencies[i].abbreviation + '</option>');
-      $toCurrencyType.append('<option value="' + currencies[i].abbreviation + '">' +
-         currencies[i].abbreviation + '</option>');
-   }
-
-   // Update the selected option using the last currencies used
-   var settings = Settings.getSettings();
-   if (!$.isEmptyObject(settings))
-   {
-      var currency = $fromCurrencyType.find('[value="' + settings.fromCurrency + '"]');
-      if (currency !== null)
-         $(currency).attr('selected', 'selected');
-
-      currency = $toCurrencyType.find('[value="' + settings.toCurrency + '"]');
-      if (currency !== null)
-         $(currency).attr('selected', 'selected');
-   }
-
-   $fromCurrencyType.selectmenu('refresh');
-   $toCurrencyType.selectmenu('refresh');
-}
-
 /**
  * Update the exchange rates using the ECB web service
  */
@@ -195,7 +136,6 @@ function updateExchangeRates()
             textVisible: true
          }
       );
-
       $.get(
          'http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml',
          null,
@@ -204,7 +144,6 @@ function updateExchangeRates()
             var $currenciesElements = $(data).find('Cube[currency]');
             // The EURO is the default currency, so it isn't in the retrieved data
             var currencies = [new Currency('EUR', '1')];
-
             var i;
             for(i = 0; i < $currenciesElements.length; i++)
             {
@@ -215,19 +154,16 @@ function updateExchangeRates()
                   )
                );
             }
-
             currencies.sort(Currency.compare);
             // Store the data
             for(i = 0; i < currencies.length; i++)
                currencies[i].save();
-
             // Update settings
             var settings = Settings.getSettings();
             if ($.isEmptyObject(settings))
                settings = new Settings();
             settings.lastUpdate = new Date();
             settings.save();
-
             fillCurrenciesSelection();
             updateLastUpdate();
             $('#submit-button').button('enable');
@@ -261,7 +197,6 @@ function updateExchangeRates()
       $('#submit-button').button('disable');
    }
 }
-
 function updateLastUpdate()
 {
    if (typeof Settings.getSettings().lastUpdate === 'undefined')
@@ -269,7 +204,6 @@ function updateLastUpdate()
       $('#last-update').text('-');
       return;
    }
-
    // Show the last time the rates have been updated
    navigator.globalization.dateToString(
       new Date(Settings.getSettings().lastUpdate),

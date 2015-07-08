@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Instate</title>
+      <title>Community Information</title>
       <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
       <link rel="stylesheet" type="text/css" href="css/jquery.mobile.squareui.css" />
       <script src="js/jquery-1.8.3.min.js"></script>
@@ -24,52 +24,15 @@
    <body>
       <div id="home-page" data-role="page">
          <header data-role="header">
-            <h1>Instante</h1>
+            <h1 id="page-title">Community Information</h1>
             <a href="#" id="lang-es-button" data-icon="refresh" onclick="translateMainPageTo('en')" data-iconpos="notext" class="ui-btn-inline">en</a>
             <a href="#" id="lang-es-button" data-icon="refresh" onclick="translateMainPageTo('es')" data-iconpos="notext" class="ui-btn-inline">es</a>
          </header>
          <div data-role="content">
-            <p id="app-description">
-               Currency Converter is a simple app that helps you convert from a currency to another. You can
-               update the exchange rates every time you want so you'll have always an up-to-date conversion.
-            </p>
-            <label id="last-update-label">Last update rates:</label>
-            <span id="last-update"></span>
-            <form id="form-converter" name="form-converter" action="#">
-               <h2 id="convert-title">Convert</h2>
-               <div data-role="fieldcontain">
-                  <label for="from-value" id="from-value-label">Value:</label>
-                  <input type="number" id="from-value" name="from-value" pattern="[0-9]*" value="0" min="0" max="999999999999999" />
-               </div>
-               <div data-role="fieldcontain">
-                  <label for="from-type" id="from-type-label">From Currency:</label>
-                  <select id="from-type">
-                  </select>
-               </div>
-               <div data-role="fieldcontain">
-                  <label for="to-type" id="to-type-label">To Currency:</label>
-                  <select id="to-type">
-                  </select>
-               </div>
 
-               <h2 id="result-title">Result</h2>
-               <output id="result" name="result" for="from-value from-type to-type">0</output>
-
-               <div class="ui-grid-a">
-                  <div class="ui-block-a">
-                     <input id="reset-button" type="reset" value="Reset" data-icon="delete" data-theme="c" />
-                  </div>
-                  <div class="ui-block-b">
-                     <input id="submit-button" type="submit" value="Convert" data-icon="check" />
-                  </div>
-               </div>
-            </form>
          </div>
          <footer data-role="footer">
-            <h3 id="copyright-title">Created by Aurelio De Rosa</h3>
-            <!--
-            <a id="credits-button" href="aurelio.html" data-icon="info" data-iconpos="notext" data-prefetch="prefetch" data-transition="flip" class="ui-btn-right">Credits</a>
-            -->
+            <h3 id="copyright-title">Created by Hope CommUnity Center</h3>
          </footer>
       </div>
    </body>
