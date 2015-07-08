@@ -1,2 +1,4 @@
-app-description: Currency Converter is a simple app that helps you convert from a currency to another. You can update the exchange rates every time you want so you'll have always an up-to-date conversion.
+app-description: Always up to date and here to help
 link-to-know-your-rights: Know Your Rights
+link-to-local-updates: Local Updates
+page-title: Community Info

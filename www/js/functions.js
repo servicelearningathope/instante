@@ -34,8 +34,16 @@ function initApplication()
 {
    var settings = Settings.getSettings();
    window.current_lang = settings.lastLanguage || "en";
-   loadContentInLanguage("index", window.current_lang); //should replace EN with saved setting
-   openLinksInApp();
+   window.appHistory = [];
+   window.current_page = "index";
+   loadContentInCurrentLanguage("index");
+   $("a").live('click', function(event) {
+      event.preventDefault();
+      if($(this).attr("href") != "#") {
+         loadContentInCurrentLanguage($(this).attr('href'));
+      }
+      return false;
+   });
    if (checkRequirements() === false)
    {
       $('#submit-button').button('disable');
@@ -66,9 +74,6 @@ function initApplication()
       var settings = Settings.getSettings();
       if ($.isEmptyObject(settings))
          settings = new Settings();
-      settings.fromCurrency = $('#from-type').val();
-      settings.toCurrency = $('#to-type').val();
-      settings.save();
    });
    $('#reset-button').click(function(event) {
       event.preventDefault();
@@ -104,20 +109,34 @@ function updateContent() {
  */
 function translateCurrentPageTo(lang) {
    window.current_lang = lang;
-   loadContentInLanguage(window.current_page);
+   loadContentInCurrentLanguage(window.current_page);
 }
-function loadContentInLanguage(slug) {
-   $("#content").html("loading");
+function appHistoryBack() {
+   last_page = window.appHistory.pop();
+   window.current_page = last_page;
+   loadContentInCurrentLanguage(last_page);
+}
+function loadContentInCurrentLanguage(slug) {
+   $("#content").html("...");
+   Settings.saveSetting("lastLanguage", window.current_lang);
    $.get("content/" + slug + ".html", function (template) {
       $.get("lang/" + window.current_lang + "/" + slug + ".txt", function(data) {
          template = $(template);
          translations = YAML.parse(data);
-         $.foreach(translations, function (key, value) {
-            template.find("#" + key).innerHTML(value);
+         $.each(translations, function (key, value) {
+            if(key == "page-title") {
+               $("#page-title").html(value);
+            } else {
+               template.find("#" + key).html(value);
+            }
          });
          $("#content").html(template);
       });
    });
+   if(window.current_page != slug) {
+      window.appHistory.push(window.current_page);
+      window.current_page = slug;
+   }
 }
 /**
  * Open all the links as internals
@@ -126,8 +145,7 @@ function openLinksInApp()
 {
    $("a[target=\"_blank\"]").on('click', function(event) {
       event.preventDefault();
-      window.current_page = $(this).attr('href');
-      loadContentInLanguage($(this).attr('href'), window.current_lang);
+      loadContentInCurrentLanguage($(this).attr('href'));
    });
 }
 /**

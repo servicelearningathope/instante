@@ -1,0 +1,13 @@
+know-your-rights: Es importante que conozca sus derechos
+right-1: derecho numero 1
+right-2: derecho numero 2
+right-3: derecho numero 3
+right-4: derecho numero 4
+right-5: derecho numero 5
+right-6: derecho numero 6
+right-7: derecho numero 7
+right-8: derecho numero 8
+right-9: derecho numero 9
+right-10: derecho numero 10
+right-11: derecho numero 11
+page-title: Conozca sus derechos

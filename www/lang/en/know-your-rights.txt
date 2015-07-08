@@ -1,0 +1,13 @@
+know-your-rights: It is important to know your rights
+right-1: right number 1
+right-2: right number 2
+right-3: right number 3
+right-4: right number 4
+right-5: right number 5
+right-6: right number 6
+right-7: right number 7
+right-8: right number 8
+right-9: right number 9
+right-10: right number 10
+right-11: right number 11
+page-title: Know Your Rights

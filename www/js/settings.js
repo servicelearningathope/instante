@@ -28,10 +28,9 @@ function Settings(lastLanguage, updateURL, lastUpdate)
    this.load = function()
    {
       values = JSON.parse(_db.getItem(_tableName));
-      console.log(values)
       this.updateURL = values["updateURL"];
       this.lastUpdate = values["lastUpdate"];
-      this.lastLanguage = values["lastUpdate"];
+      this.lastLanguage = values["lastLanguage"];
       return this;
    }
    this.to_json = function() {
@@ -41,7 +40,6 @@ function Settings(lastLanguage, updateURL, lastUpdate)
 
 Settings.saveSetting = function (key, value) {
    var settings = new Settings().load();
-   console.log(settings);
    switch(key) {
       case 'updateURL': settings.updateURL = value;
       case 'lastLanguage': settings.lastLanguage = value;
@@ -55,8 +53,8 @@ Settings.getSettings = function()
    return (settings === null) ?
       {} :
       new Settings(
-         settings.lastUpdate,
          settings.lastLanguage,
-         settings.updateURL
+         settings.updateURL,
+         settings.lastUpdate
       );
 }
