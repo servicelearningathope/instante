@@ -101,6 +101,7 @@ function updateContent() {
  * Translate the main page
  */
 function loadContentInLanguage(slug, lang) {
+   $("#content").html("loading");
    $.get("content/" + slug + ".html", function (template) {
       $.get("lang/" + lang + "/" + slug + ".txt", function(data) {
          template = $(template);
@@ -108,7 +109,7 @@ function loadContentInLanguage(slug, lang) {
          $.foreach(translations, function (key, value) {
             template.find("#" + key).innerHTML(value);
          });
-         $("#content").innerHTML(template);
+         $("#content").html(template);
       });
    });
 }
