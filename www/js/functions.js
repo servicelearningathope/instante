@@ -32,7 +32,9 @@ function updateIcons()
  */
 function initApplication()
 {
-   loadContentInLanguage("index", "en"); //should replace EN with saved setting
+   var settings = Settings.getSettings();
+   window.current_lang = settings.lastLanguage || "en";
+   loadContentInLanguage("index", window.current_lang); //should replace EN with saved setting
    openLinksInApp();
    if (checkRequirements() === false)
    {
@@ -100,10 +102,14 @@ function updateContent() {
 /**
  * Translate the main page
  */
-function loadContentInLanguage(slug, lang) {
+function translateCurrentPageTo(lang) {
+   window.current_lang = lang;
+   loadContentInLanguage(window.current_page);
+}
+function loadContentInLanguage(slug) {
    $("#content").html("loading");
    $.get("content/" + slug + ".html", function (template) {
-      $.get("lang/" + lang + "/" + slug + ".txt", function(data) {
+      $.get("lang/" + window.current_lang + "/" + slug + ".txt", function(data) {
          template = $(template);
          translations = YAML.parse(data);
          $.foreach(translations, function (key, value) {
@@ -120,7 +126,8 @@ function openLinksInApp()
 {
    $("a[target=\"_blank\"]").on('click', function(event) {
       event.preventDefault();
-      window.open($(this).attr('href'), '_target');
+      window.current_page = $(this).attr('href');
+      loadContentInLanguage($(this).attr('href'), window.current_lang);
    });
 }
 /**
