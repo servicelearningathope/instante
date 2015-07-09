@@ -117,7 +117,7 @@ function appHistoryBack() {
    loadContentInCurrentLanguage(last_page);
 }
 function loadContentInCurrentLanguage(slug) {
-   $("#content").html("...");
+   $("#content-box").html("...");
    Settings.saveSetting("lastLanguage", window.current_lang);
    $.get("content/" + slug + ".html", function (template) {
       $.get("lang/" + window.current_lang + "/" + slug + ".txt", function(data) {
@@ -130,7 +130,7 @@ function loadContentInCurrentLanguage(slug) {
                template.find("#" + key).html(value);
             }
          });
-         $("#content").html(template);
+         $("#content-box").html(template);
       });
    });
    if(window.current_page != slug) {
