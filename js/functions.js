@@ -34,10 +34,10 @@ function initApplication()
 {
    var settings = Settings.getSettings();
    window.current_lang = settings.lastLanguage || "en";
-   window.appHistory = [];
+   window.appHistory = ["index"];
    window.current_page = "index";
    loadContentInCurrentLanguage("index");
-   $("a").live('click', function(event) {
+   $("body").on('click', 'a', function(event) {
       event.preventDefault();
       if($(this).attr("href") != "#") {
          loadContentInCurrentLanguage($(this).attr('href'));
@@ -112,12 +112,13 @@ function translateCurrentPageTo(lang) {
    loadContentInCurrentLanguage(window.current_page);
 }
 function appHistoryBack() {
-   last_page = window.appHistory.pop();
-   window.current_page = last_page;
-   loadContentInCurrentLanguage(last_page);
+   if(window.appHistory.length > 1) {
+      last_page = window.appHistory.pop();
+      window.current_page = last_page;
+      loadContentInCurrentLanguage(last_page);
+   }
 }
 function loadContentInCurrentLanguage(slug) {
-	console.log("begin loading");
    $("#content-box").html("...");
    Settings.saveSetting("lastLanguage", window.current_lang);
    $.get("contents/" + slug + ".html", function (template) {
@@ -132,7 +133,6 @@ function loadContentInCurrentLanguage(slug) {
             }
          });
          $("#content-box").html(template);
-         console.log("finish loading");
       });
    });
    if(window.current_page != slug) {

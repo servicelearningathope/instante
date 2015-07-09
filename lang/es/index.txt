@@ -2,3 +2,5 @@ app-description: Siempre al día y aquí para ayudar
 link-to-know-your-rights: Yo Se Derecho
 link-to-local-updates: actualizaciones locales
 page-title: Información de la Comunidad
+link-to-class-schedules: los horarios de clase
+link-to-immigration-reform: Reforma de la Inmigración

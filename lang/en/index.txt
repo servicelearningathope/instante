@@ -2,3 +2,5 @@ app-description: Always up to date and here to help
 link-to-know-your-rights: Know Your Rights
 link-to-local-updates: Local Updates
 page-title: Community Info
+link-to-class-schedules: Class Schedules
+link-to-immigration-reform: Immigration Reform
