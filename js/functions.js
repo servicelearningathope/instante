@@ -123,11 +123,13 @@ function loadContentInCurrentLanguage(slug) {
    Settings.saveSetting("lastLanguage", window.current_lang);
    $.get("contents/" + slug + ".html", function (template) {
       $.get("lang/" + window.current_lang + "/" + slug + ".txt", function(data) {
-         template = $(template);
+         template = $("<div>" + template + "</div>");
          translations = YAML.parse(data);
          $.each(translations, function (key, value) {
             if(key == "page-title") {
                $("#page-title").html(value);
+            } else if(key == "page-footer") {
+               $("#page-footer").html(value);
             } else {
                template.find("#" + key).html(value);
             }
