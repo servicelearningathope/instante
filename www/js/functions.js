@@ -120,7 +120,7 @@ function loadContentInCurrentLanguage(slug) {
 	console.log("begin loading");
    $("#content-box").html("...");
    Settings.saveSetting("lastLanguage", window.current_lang);
-   $.get("content/" + slug + ".html", function (template) {
+   $.get("contents/" + slug + ".html", function (template) {
       $.get("lang/" + window.current_lang + "/" + slug + ".txt", function(data) {
          template = $(template);
          translations = YAML.parse(data);
