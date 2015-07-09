@@ -1,50 +1,16 @@
-# PhoneGap Build Starter Application
+#Currency converter#
+[Currency converter](https://github.com/AurelioDeRosa/Currency-Converter) is a simple application that helps you convert from a currency to another. You can update the exchange rates everytime you want so you'll have always an up-to-date conversion. Once retrieved, the rates are saved so the user can use the application offline. Currently the app supports the following languages: English, Italian, French and Spanish.
 
-> A Hello World application to get started with PhoneGap Build.
+This application is written using HTML, CSS and JavaScript with the support of several frameworks like jQuery, jQuery Mobile and Cordova (also known as PhoneGap).
 
-## Usage
+##Compilation##
+[Currency converter](https://github.com/AurelioDeRosa/Currency-Converter) has been developed with the assumption that the compilation will be done using [Adobe PhoneGap Build](http://build.phonegap.com/), but with few adjustments you'll be able to compile with every platform specific environment.
 
-### Run Application
+##Compatibility##
+Being a Cordova based application, it can run on all the platform supported by the framework. To have a complete list of the operating systems supported, take a look at [official documentation page](http://phonegap.com/about/feature).
 
-    /www/index.html
+##License##
+[Currency converter](https://github.com/AurelioDeRosa/Currency-Converter) is released under the [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/) ("Creative Commons Attribution 3.0") license.
 
-### Run Tests
-
-    /www/spec.html
-
-### PhoneGap/Build
-
-Create a new app with the following repository:
-
-    https://github.com/phonegap/phonegap-start.git
-
-## Updating the Application
-
-The application is based on the [Apache Cordova Hello World][cordova-app] app.
-
-### 1. Update the Source
-
-    cp cordova-app-hello-world/www www/
-
-__Do not replace `www/config.xml`.__
-
-__Do not replace `www/img/logo.png`.__
-
-### 2. Update index.html
-
-Replace `<h1>Apache Cordova</h1>` with `<h1>PhoneGap</h1>`.
-
-### 3. Update PhoneGap Version
-
-    <preference name="phonegap-version" value="x.x.x" />
-
-### 4. Commit
-
-    $ git commit -am "Version x.x.x"
-
-### 5. Tag
-
-    $ git tag x.x.x
-
-[cordova-app]: http://github.com/apache/cordova-app-hello-world
-
+##Authors##
+[Aurelio De Rosa](http://www.audero.it) (Twitter: [@AurelioDeRosa](https://twitter.com/AurelioDeRosa))
