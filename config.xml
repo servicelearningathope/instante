@@ -18,7 +18,7 @@
 
    <preference name="phonegap-version" value="3.7.0" />
    <preference name="target-device" value="universal" />
-
+   <preference name="Orientation" value="portrait" />
    <access origin="*" />
 
    <!-- Icons -->
