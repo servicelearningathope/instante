@@ -23,15 +23,13 @@
    <body>
       <nav class="navbar navbar-inverse navbar-fixed-top">
          <div class="container">
+            <div id="navbar-buttons" style="float:right;padding-top:4px">
+               <a href="#" id="back-button" class="btn btn-s btn-primary" onclick="appHistoryBack()">&lt;</a>
+               <a href="#" id="lang-es-button" class="btn btn-s btn-primary" onclick="translateCurrentPageTo('en')">en</a>
+               <a href="#" id="lang-es-button" class="btn btn-s btn-primary" onclick="translateCurrentPageTo('es')">es</a>
+            </div>
             <div class="navbar-header">
                <a id="page-title" class="navbar-brand" href="#">Community Information</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse navbar-right">
-               <ul class="nav navbar-nav">
-                  <li><a href="#" id="back-button" data-role="button" onclick="appHistoryBack()">&lt;</a></li>
-                  <li><a href="#" id="lang-es-button" data-role="button" onclick="translateCurrentPageTo('en')">en</a></li>
-                  <li><a href="#" id="lang-es-button" data-role="button" onclick="translateCurrentPageTo('es')">es</a></li>
-               </ul>
             </div>
          </div>
       </nav>

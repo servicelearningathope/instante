@@ -36,6 +36,7 @@ function initApplication()
    window.current_lang = settings.lastLanguage || "en";
    window.appHistory = ["index"];
    window.current_page = "index";
+   document.addEventListener("backbutton", appHistoryBack, true);
    loadContentInCurrentLanguage("index");
    $("body").on('click', 'a', function(event) {
       event.preventDefault();
@@ -126,6 +127,7 @@ function loadContentInCurrentLanguage(slug) {
          template = $("<div>" + template + "</div>");
          translations = YAML.parse(data);
          $.each(translations, function (key, value) {
+            console.log(key)
             if(key == "page-title") {
                $("#page-title").html(value);
             } else if(key == "page-footer") {
